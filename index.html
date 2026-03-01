@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Hotel Booking Form</h2>
+
+    <form id="bookingForm">
+
+        <div class="form-group">
+            <label>Check-in Date</label>
+            <input type="date" id="checkin" required>
+        </div>
+
+        <div class="form-group">
+            <label>Check-out Date</label>
+            <input type="date" id="checkout" required>
+        </div>
+
+        <div class="form-group">
+            <label>Room Type</label>
+            <select required>
+                <option value="">Select Room</option>
+                <option>Single</option>
+                <option>Double</option>
+                <option>Suite</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Guest Count</label>
+            <input type="number" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label>Special Requests</label>
+            <textarea rows="3"></textarea>
+        </div>
+
+        <div class="error" id="errorMsg"></div>
+
+        <button type="submit">Book Now</button>
+
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById("bookingForm");
+    const checkin = document.getElementById("checkin");
+    const checkout = document.getElementById("checkout");
+    const errorMsg = document.getElementById("errorMsg");
+
+    // Restrict past dates
+    const today = new Date().toISOString().split("T")[0];
+    checkin.setAttribute("min", today);
+
+    checkin.addEventListener("change", function() {
+        checkout.setAttribute("min", checkin.value);
+    });
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        if (checkout.value <= checkin.value) {
+            errorMsg.textContent = "Check-out date must be after check-in date.";
+        } else {
+            errorMsg.textContent = "";
+            alert("Booking Successful!");
+            form.reset();
+        }
+    });
+</script>
+
+</body>
+</html>
