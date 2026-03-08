@@ -1,146 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hotel Booking Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-
-        @media (max-width: 500px) {
-            .container {
-                margin: 10px;
-            }
-        }
-    </style>
+<title>Royal Hotel Booking</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Hotel Booking Form</h2>
+<header>
+<h1>Royal Palace Hotel</h1>
+<p>Enjoy Luxury & Comfort</p>
+</header>
 
-    <form id="bookingForm">
+<section class="hero">
+<h2>Welcome to Our Hotel</h2>
+<p>Book your perfect stay with us</p>
+</section>
 
-        <div class="form-group">
-            <label>Check-in Date</label>
-            <input type="date" id="checkin" required>
-        </div>
+<section class="booking">
 
-        <div class="form-group">
-            <label>Check-out Date</label>
-            <input type="date" id="checkout" required>
-        </div>
+<h2>Hotel Booking Form</h2>
 
-        <div class="form-group">
-            <label>Room Type</label>
-            <select required>
-                <option value="">Select Room</option>
-                <option>Single</option>
-                <option>Double</option>
-                <option>Suite</option>
-            </select>
-        </div>
+<form id="bookingForm">
 
-        <div class="form-group">
-            <label>Guest Count</label>
-            <input type="number" min="1" required>
-        </div>
+<input type="text" placeholder="Full Name" required>
 
-        <div class="form-group">
-            <label>Special Requests</label>
-            <textarea rows="3"></textarea>
-        </div>
+<input type="email" placeholder="Email Address" required>
 
-        <div class="error" id="errorMsg"></div>
+<input type="text" id="phone" placeholder="Phone Number" required>
 
-        <button type="submit">Book Now</button>
+<label>Check In Date</label>
+<input type="date" required>
 
-    </form>
+<label>Check Out Date</label>
+<input type="date" required>
+
+<select>
+<option>Select Room</option>
+<option>Single Room</option>
+<option>Double Room</option>
+<option>Luxury Suite</option>
+</select>
+
+<input type="number" placeholder="Number of Guests" min="1" max="5">
+
+<button type="submit">Book Now</button>
+
+<p id="msg"></p>
+
+</form>
+
+</section>
+
+<section class="services">
+
+<div class="service">
+<h3>🏨 Luxury Rooms</h3>
+<p>Modern and comfortable rooms</p>
 </div>
 
-<script>
-    const form = document.getElementById("bookingForm");
-    const checkin = document.getElementById("checkin");
-    const checkout = document.getElementById("checkout");
-    const errorMsg = document.getElementById("errorMsg");
+<div class="service">
+<h3>🍽 Restaurant</h3>
+<p>Delicious food available</p>
+</div>
 
-    // Restrict past dates
-    const today = new Date().toISOString().split("T")[0];
-    checkin.setAttribute("min", today);
+<div class="service">
+<h3>🏊 Swimming Pool</h3>
+<p>Relax in our beautiful pool</p>
+</div>
 
-    checkin.addEventListener("change", function() {
-        checkout.setAttribute("min", checkin.value);
-    });
+</section>
 
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
+<footer>
+<p>© 2026 Royal Palace Hotel</p>
+</footer>
 
-        if (checkout.value <= checkin.value) {
-            errorMsg.textContent = "Check-out date must be after check-in date.";
-        } else {
-            errorMsg.textContent = "";
-            alert("Booking Successful!");
-            form.reset();
-        }
-    });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
